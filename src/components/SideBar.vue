@@ -4,13 +4,26 @@
     app
     color="#1C1B2B"
     mini-variant
-    mini-variant-width="90"
+    draggable="true"
+    :mini-variant-width="mini"
   >
-    <h4 class="d-block text-center mx-auto mt-4" size="60" style="color: #0bf4de">
-      Admin
-    </h4>
+    <h5 class="d-block text-center mx-auto mt-4" size="60" style="color: #0bf4de">
+      Dashboard
+    </h5>
     <v-list flat class="mt-16" dark>
       <v-list-item-group v-model="selectItem">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          active-class="border"
+          class=""
+          :ripple="false"
+        >
+          <v-list-item-icon>
+            <v-icon v-text="item.icon"></v-icon>
+          </v-list-item-icon>
+        </v-list-item>
+
         <a href="/">
           <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
             <font-awesome-icon icon="chart-line" />
@@ -42,12 +55,45 @@ export default {
     selectItem: 0,
     drawer: null,
     items: [
-      { icon: require("@/assets/img/account.png") },
-      { icon: require("@/assets/img/account.png") },
-      { icon: require("@/assets/img/account.png") },
-      { icon: require("@/assets/img/account.png") },
+      { icon: "fas fa-plus" },
+      { icon: "fas fa-th-large" },
+      { icon: "fas fa-align-center" },
+      { icon: "fab fa-gitter" },
+      { icon: "fas fa-chart-line" },
     ],
   }),
+
+  computed() {
+    switch (this.$vuetify.breakpoint.name) {
+      case "xs":
+        return true;
+      case "sm":
+        return true;
+      case "md":
+        return true;
+      case "lg":
+        return true;
+      case "xl":
+        return true;
+    }
+  },
+
+  methods: {
+    mini() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return true;
+        case "sm":
+          return true;
+        case "md":
+          return true;
+        case "lg":
+          return true;
+        case "xl":
+          return true;
+      }
+    },
+  },
 };
 </script>
 
@@ -61,6 +107,9 @@ a {
   text-shadow: 1px 1px 2px black, 0 0 15px #0bf4de, 0 0 5px aqua;
 }
 .v-list-item-group .v-list-item-active {
-  color: #0bf4de !important;
+  color: #0bf4de;
+}
+span {
+  font-size: 13x;
 }
 </style>

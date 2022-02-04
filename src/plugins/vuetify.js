@@ -10,9 +10,5 @@ export default new Vuetify({
         iconfont: 'md' || 'fa',
     },
 
-    theme: {
-        dark: {
-            background: '#343537'
-        }
-    }
+
 });

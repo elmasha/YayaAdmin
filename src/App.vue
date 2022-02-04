@@ -1,24 +1,18 @@
 <template>
   <v-app>
-   
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+    <div class="app">
+      <SideBar />
+      <v-container fluid> <router-view /></v-container>
+    </div>
   </v-app>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld';
-
+import SideBar from "./components/SideBar.vue";
 export default {
-  name: 'App',
-
   components: {
-    HelloWorld,
+    SideBar,
   },
-
-  data: () => ({
-    //
-  }),
 };
 </script>
+
+<style lang="scss"></style>
