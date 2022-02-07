@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "bureau",
+  name: 'bureau',
 };
 </script>
 

@@ -1,33 +1,31 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
 
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [{
-        path: '/',
-        name: 'dashboard',
-        component: () =>
-            import ('../components/Dashboard.vue')
-    },
-    {
-        path: '/bureau',
-        name: 'bureau',
-        component: () =>
-            import ('../components/Bureau.vue')
-    },
-    {
-        path: '/client',
-        name: 'client',
-        component: () =>
-            import ('../components/Client.vue')
-    },
+export default new Router({
+    routes: [
 
-]
+        {
+            path: '/',
+            name: 'dashboard',
+            component: () =>
+                import ('../components/Dashboard.vue')
+        },
+        {
+            path: '/bureau',
+            name: 'bureau',
+            component: () =>
+                import ('../components/Bureau.vue')
+        },
+        {
+            path: '/client',
+            name: 'client',
+            component: () =>
+                import ('../components/Client.vue')
+        },
 
-const router = new VueRouter({
-    routes
-})
-
-export default router
+    ]
+});

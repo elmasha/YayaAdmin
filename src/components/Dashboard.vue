@@ -6,25 +6,25 @@
       <template class="col-md-12">
         <v-container class="grey lighten-4 text-center">
           <v-row no-gutters>
-            <v-col cols="12" sm="6" lg="6" xs="4" md="12" class="d-flex co-md-12">
-              <v-card color="#0bf4de" class="pa-6 co-md-12">
+            <v-col cols="12" sm="6" lg="6" xs="6" md="12" class="d-flex">
+              <v-card color="#0bf4de" class="pa-6">
                 <v-card-title>
                   <span class="h1-name">No of bureau registered</span>
                 </v-card-title>
-                <v-divider class="mx-6"></v-divider>
+                <v-divider class="mx-3"></v-divider>
                 <v-card-text>
                   <h1 class="h1-dash">14{{ NoOfBue }}</h1>
                 </v-card-text>
               </v-card>
 
               <v-spacer></v-spacer>
-              <v-card color="#0bf4de" class="pa-6 co-md-12">
+              <v-card color="#0bf4de" class="pa-6">
                 <v-card-title class="h1-name">
                   <span class="h1-name">No of bureau candidate</span>
                 </v-card-title>
                 <v-divider class="mx-6"></v-divider>
                 <v-card-text>
-                  <h1 class="h1-dash" sm="4">24</h1>
+                  <h1 class="h1-dash" sm="4">{{ NoOfCandidate }}</h1>
                 </v-card-text>
               </v-card>
             </v-col>
@@ -36,40 +36,36 @@
 </template>
 
 <script>
-import db from "../firebaseInit";
+import db from "firebase";
+
 export default {
   name: "dashboard",
-  created() {
-    this.Fetcth;
-  },
+  created() {},
   mounted() {
-    this.Fetcth;
+    this.Fetcth();
   },
 
   methods: {
-    data() {
-      return {
-        NoOfBue: null,
-        NoOfCandidate: 0,
-      };
-    },
     Fetcth() {
       db.collection("Admin")
         .doc("No_of_bureau")
-        .get()
         .then((doc) => {
           this.NoOfBue = doc.data().No;
           console.log("Doc", this.NoOfBue);
         });
-      // db.collection("Admin")
-      //   .doc("No_of_candidates")
-      //   .get()
-      //   .then((doc) => {
-      //     (this.NoOfCandidate = doc.data().Total_number),
-      //       console.log("Trash", this.trash);
-      //   });
+      db.collection("Admin")
+        .doc("No_of_candidates")
+        .get()
+        .then((doc) => {
+          (this.NoOfCandidate = doc.data().Total_number),
+            console.log("Trash", this.trash);
+        });
     },
   },
+  data: () => ({
+    NoOfBue: 0,
+    NoOfCandidate: 0,
+  }),
 };
 </script>
 
@@ -82,6 +78,8 @@ h1 {
 }
 .v-card {
   margin: 10px;
+  padding: 20px;
+  width: 100%;
 }
 .h1-dash {
   background-color: #1c1b2b;
@@ -99,8 +97,9 @@ h1 {
   color: #fff;
 }
 .h1-name {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 600;
   text-align: center;
+  text-decoration: none;
 }
 </style>

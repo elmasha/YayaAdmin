@@ -23,6 +23,7 @@
           color="#1C1B2B"
           mini-variant
           mini-variant-width="100"
+          
         >
           <h5
             class="d-block text-center mx-auto mt-4"
