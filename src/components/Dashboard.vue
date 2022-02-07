@@ -6,10 +6,10 @@
       <template class="col-md-12">
         <v-container class="grey lighten-4 text-center">
           <v-row no-gutters>
-            <v-col cols="12" sm="6" lg="6" xs="4" class="d-flex">
+            <v-col cols="12" sm="6" lg="6" xs="4" md="12" class="d-flex co-md-12">
               <v-card color="#0bf4de" class="pa-6 co-md-12">
                 <v-card-title>
-                  <h1 class="h1-name">No of bureau registered</h1>
+                  <span class="h1-name">No of bureau registered</span>
                 </v-card-title>
                 <v-divider class="mx-6"></v-divider>
                 <v-card-text>
@@ -17,11 +17,10 @@
                 </v-card-text>
               </v-card>
 
-              <div style="margin: 10px"></div>
               <v-spacer></v-spacer>
               <v-card color="#0bf4de" class="pa-6 co-md-12">
                 <v-card-title class="h1-name">
-                  <h1 class="h1-name">No of bureau candidate</h1>
+                  <span class="h1-name">No of bureau candidate</span>
                 </v-card-title>
                 <v-divider class="mx-6"></v-divider>
                 <v-card-text>
@@ -81,6 +80,9 @@ h1 {
 .v-chip {
   padding: 30px;
 }
+.v-card {
+  margin: 10px;
+}
 .h1-dash {
   background-color: #1c1b2b;
   position: relative;
@@ -97,7 +99,7 @@ h1 {
   color: #fff;
 }
 .h1-name {
-  font-size: 17px;
+  font-size: 12px;
   font-weight: 400;
   text-align: center;
 }
