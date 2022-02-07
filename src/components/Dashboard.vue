@@ -1,38 +1,25 @@
 <template>
   <div>
-    <v-app>
+    <v-app id="app" class="app">
       <div class="container"></div>
 
       <template class="col-md-12">
-        <v-container class="grey lighten-5">
+        <v-container class="grey lighten-4 text-center">
           <v-row no-gutters>
-            <v-col cols="12" sm="6">
-              <v-card class="pa-10">
+            <v-col cols="12" sm="4" lg="6" xs="6">
+              <v-card color="#0bf4de" class="pa-6">
                 <v-card-title>No of bureau registered</v-card-title>
                 <v-divider class="mx-4"></v-divider>
                 <v-card-text>
-                  <v-chip-group
-                    v-model="selection"
-                    active-class="deep-purple accent-6 white--text"
-                    column
-                  >
-                    <v-chip><h1>10</h1></v-chip>
-                  </v-chip-group>
+                  <h1 class="h1-dash">14{{ NoOfBue }}</h1>
                 </v-card-text>
               </v-card>
               <br />
-              <v-card class="pa-10">
+              <v-card color="#0bf4de" class="pa-6">
                 <v-card-title>No of bureau candidate</v-card-title>
                 <v-divider class="mx-4"></v-divider>
                 <v-card-text>
-                  <v-chip-group
-                    v-model="selection"
-                    active-class="deep-purple accent-6 white--text"
-                    column
-                    style="padding: 20px"
-                  >
-                    <v-chip class="v-chip"><h1>200</h1></v-chip>
-                  </v-chip-group>
+                  <h1 class="h1-dash" sm="4">24</h1>
                 </v-card-text>
               </v-card>
             </v-col>
@@ -44,33 +31,38 @@
 </template>
 
 <script>
-//import db from "../firebaseInit";
+import db from "../firebaseInit";
 export default {
   name: "dashboard",
-  mounted() {},
+  created() {
+    this.Fetcth;
+  },
+  mounted() {
+    this.Fetcth;
+  },
+
   methods: {
     data() {
       return {
-        NoOfBue: 0,
+        NoOfBue: null,
         NoOfCandidate: 0,
       };
     },
     Fetcth() {
-      //   db.collection("Admin")
-      //     .doc("No_of_bureau")
-      //     .get()
-      //     .then((doc) => {
-      //       (this.BureauCount = doc.data().No),
-      //         (this.CandidateCount = doc.data().No_of_candidates),
-      //         console.log("Trash", this.trash);
-      //     });
-      //   db.collection("Admin")
-      //     .doc("No_of_candidates")
-      //     .get()
-      //     .then((doc) => {
-      //       (this.CandidateCount = doc.data().Total_number),
-      //         console.log("Trash", this.trash);
-      //     });
+      db.collection("Admin")
+        .doc("No_of_bureau")
+        .get()
+        .then((doc) => {
+          this.NoOfBue = doc.data().No;
+          console.log("Doc", this.NoOfBue);
+        });
+      // db.collection("Admin")
+      //   .doc("No_of_candidates")
+      //   .get()
+      //   .then((doc) => {
+      //     (this.NoOfCandidate = doc.data().Total_number),
+      //       console.log("Trash", this.trash);
+      //   });
     },
   },
 };
@@ -78,9 +70,24 @@ export default {
 
 <style>
 h1 {
-  color: rgb(196, 8, 8);
+  color: #1c1b2b;
 }
 .v-chip {
   padding: 30px;
+}
+.h1-dash {
+  background-color: #1c1b2b;
+  position: relative;
+  border-radius: 20px;
+  padding: 22px;
+  font-size: 45px;
+  font-weight: 500;
+  color: #0bf4de;
+}
+.h1-dash:hover {
+  padding: 22px;
+  font-size: 45px;
+  font-weight: 500;
+  color: #fff;
 }
 </style>
