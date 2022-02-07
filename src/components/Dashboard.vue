@@ -6,8 +6,8 @@
       <template class="col-md-12">
         <v-container class="grey lighten-4 text-center">
           <v-row no-gutters>
-            <v-col cols="12" sm="4" lg="6" xs="6">
-              <v-card color="#0bf4de" class="pa-6">
+            <v-col cols="12" sm="6" lg="6" xs="4" class="d-flex">
+              <v-card color="#0bf4de" class="pa-6 co-md-12">
                 <v-card-title>
                   <h1 class="h1-name">No of bureau registered</h1>
                 </v-card-title>
@@ -16,8 +16,10 @@
                   <h1 class="h1-dash">14{{ NoOfBue }}</h1>
                 </v-card-text>
               </v-card>
-              <br />
-              <v-card color="#0bf4de" class="pa-6">
+
+              <div style="margin: 10px"></div>
+              <v-spacer></v-spacer>
+              <v-card color="#0bf4de" class="pa-6 co-md-12">
                 <v-card-title class="h1-name">
                   <h1 class="h1-name">No of bureau candidate</h1>
                 </v-card-title>
@@ -95,7 +97,7 @@ h1 {
   color: #fff;
 }
 .h1-name {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 400;
   text-align: center;
 }
