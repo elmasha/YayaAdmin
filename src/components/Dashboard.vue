@@ -8,16 +8,20 @@
           <v-row no-gutters>
             <v-col cols="12" sm="4" lg="6" xs="6">
               <v-card color="#0bf4de" class="pa-6">
-                <v-card-title>No of bureau registered</v-card-title>
-                <v-divider class="mx-4"></v-divider>
+                <v-card-title>
+                  <h1 class="h1-name">No of bureau registered</h1>
+                </v-card-title>
+                <v-divider class="mx-6"></v-divider>
                 <v-card-text>
                   <h1 class="h1-dash">14{{ NoOfBue }}</h1>
                 </v-card-text>
               </v-card>
               <br />
               <v-card color="#0bf4de" class="pa-6">
-                <v-card-title>No of bureau candidate</v-card-title>
-                <v-divider class="mx-4"></v-divider>
+                <v-card-title class="h1-name">
+                  <h1 class="h1-name">No of bureau candidate</h1>
+                </v-card-title>
+                <v-divider class="mx-6"></v-divider>
                 <v-card-text>
                   <h1 class="h1-dash" sm="4">24</h1>
                 </v-card-text>
@@ -78,16 +82,21 @@ h1 {
 .h1-dash {
   background-color: #1c1b2b;
   position: relative;
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 22px;
-  font-size: 45px;
+  font-size: 30px;
   font-weight: 500;
   color: #0bf4de;
 }
 .h1-dash:hover {
   padding: 22px;
-  font-size: 45px;
+  font-size: 30px;
   font-weight: 500;
   color: #fff;
+}
+.h1-name {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
 }
 </style>
