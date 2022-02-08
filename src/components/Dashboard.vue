@@ -1,19 +1,17 @@
 <template>
   <div>
     <v-app id="app" class="app">
-      <div class="container"></div>
-
-      <template class="col-md-12">
-        <v-container class="grey lighten-4 text-center">
+      <div class="">
+        <v-main class="grey lighten-4 text-center">
           <v-row no-gutters>
-            <v-col cols="12" sm="6" lg="6" xs="6" md="12" class="d-flex">
+            <v-col cols="6" sm="6" lg="6" xs="6" md="6" class="d-flex col-md-12">
               <v-card color="#0bf4de" class="pa-6">
                 <v-card-title>
                   <span class="h1-name">No of bureau registered</span>
                 </v-card-title>
                 <v-divider class="mx-3"></v-divider>
                 <v-card-text>
-                  <h1 class="h1-dash">14{{ NoOfBue }}</h1>
+                  <h1 class="h1-dash">{{ NoOfBue }}</h1>
                 </v-card-text>
               </v-card>
 
@@ -29,26 +27,27 @@
               </v-card>
             </v-col>
           </v-row>
-        </v-container>
-      </template>
+        </v-main>
+      </div>
     </v-app>
   </div>
 </template>
 
 <script>
-import db from "firebase";
+import db from "../firebaseInit";
 
 export default {
   name: "dashboard",
-  created() {},
-  mounted() {
-    this.Fetcth();
+  created() {
+    this.Fetch();
   },
+  mounted() {},
 
   methods: {
-    Fetcth() {
+    Fetch() {
       db.collection("Admin")
         .doc("No_of_bureau")
+        .get()
         .then((doc) => {
           this.NoOfBue = doc.data().No;
           console.log("Doc", this.NoOfBue);
