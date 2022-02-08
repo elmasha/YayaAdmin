@@ -67,9 +67,8 @@
           </v-list>
         </v-navigation-drawer>
       </nav>
-
-      <v-content> <router-view /> </v-content
-    ></v-content>
+      <v-main> <router-view /></v-main>
+    </v-content>
   </v-app>
 </template>
 <script>
