@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <div>
-      <h3>Clents Section</h3>
+    <div class="container-fluid">
+      <h3>Clients Section</h3>
     </div>
   </v-app>
 </template>

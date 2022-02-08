@@ -47,30 +47,37 @@
                   v-bind:key="id"
                   color="primary"
                 >
-                  <v-list-item>
-                    <v-list-item-avatar>
-                      <img
-                        :src="showFirstImageGallery(Bureau.image)"
-                        @error="avatar"
-                        class="image-bureau"
-                    /></v-list-item-avatar>
+                  <router-link
+                    v-bind:to="{
+                      name: 'mybureau',
+                      params: { id: Bureau.id },
+                    }"
+                  >
+                    <v-list-item>
+                      <v-list-item-avatar>
+                        <img
+                          :src="showFirstImageGallery(Bureau.image)"
+                          @error="avatar"
+                          class="image-bureau"
+                      /></v-list-item-avatar>
 
-                    <v-list-item-content>
-                      <v-list-item-title
-                        ><h3 class="name-bureau">
-                          <b>{{ Bureau.Name }}</b>
-                        </h3></v-list-item-title
-                      >
-                      <span><b class="label-b">Bureau:</b>{{ Bureau.BName }}</span>
-                      <br />
-                      <span
-                        >Candidates:<b class="b-list">{{ Bureau.NoOfCad }}</b></span
-                      >
-                    </v-list-item-content>
-                    <v-btn icon>
-                      <v-icon>mdi-animation</v-icon>
-                    </v-btn>
-                  </v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title
+                          ><h3 class="name-bureau">
+                            <b>{{ Bureau.Name }}</b>
+                          </h3></v-list-item-title
+                        >
+                        <span><b class="label-b">Bureau:</b>{{ Bureau.BName }}</span>
+                        <br />
+                        <span
+                          >Candidates:<b class="b-list">{{ Bureau.NoOfCad }}</b></span
+                        >
+                      </v-list-item-content>
+                      <v-btn icon>
+                        <v-icon>mdi-animation</v-icon>
+                      </v-btn>
+                    </v-list-item></router-link
+                  >
                 </v-list-item-group>
               </v-list>
             </v-card>
@@ -214,7 +221,6 @@ export default {
           });
         });
     },
-
     GetAllHelper() {
       db.collection("Yaya_Employer")
         .get()

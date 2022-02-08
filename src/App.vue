@@ -43,16 +43,16 @@
                 </v-list-item-icon>
               </v-list-item>
 
-              <router-link to="/"
-                ><v-list-item active-class="border">
+              <router-link to="/" active-class="border"
+                ><v-list-item>
                   <v-icon>mdi-view-dashboard</v-icon>
-                  <span id="one">Overview</span>
                 </v-list-item>
+                <span id="one">Overview</span>
               </router-link>
 
               <hr class="hr" />
-              <router-link to="/bureau"
-                ><v-list-item active-class="border">
+              <router-link to="/bureau" active-class="border"
+                ><v-list-item>
                   <v-icon>mdi-face-agent</v-icon>
 
                   <font-awesome-icon icon="coffee"></font-awesome-icon>
@@ -61,19 +61,18 @@
               >
 
               <hr class="hr" />
-              <router-link to="/client">
-                <v-list-item active-class="border">
+              <router-link to="/client" active-class="border">
+                <v-list-item>
                   <v-icon>mdi-badge-account</v-icon>
                 </v-list-item>
                 <span id="one">Clients</span></router-link
               >
 
               <hr class="hr" />
-              <a href="">
-                <v-list-item active-class="border">
-                  <v-icon>mdi-account-child</v-icon> </v-list-item
-                ><span id="one">Auth</span></a
-              >
+              <router-link to="/" active-class="border">
+                <v-list-item> <v-icon>mdi-account-child</v-icon> </v-list-item>
+                <span id="one">Auth</span>
+              </router-link>
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>

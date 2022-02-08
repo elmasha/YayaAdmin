@@ -25,7 +25,14 @@ export default new Router({
             name: 'client',
             component: () =>
                 import ('../components/Client.vue')
+        },
+        {
+            path: '/:id',
+            name: 'mybureau',
+            component: () =>
+                import ('../components/MyBureau.vue')
         }
+
 
     ]
 });
