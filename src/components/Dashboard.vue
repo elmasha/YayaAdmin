@@ -98,12 +98,12 @@
                         </h3></v-list-item-title
                       >
                       <span>
-                        <v-icon color="#1c1b2b">mdi-at</v-icon> <b class="label-b"> </b
-                        >{{ Helper.email }}</span
+                        <!-- <b class="label-b">mdi-at</b>-->
+                        {{ Helper.email }}</span
                       >
-                      <span
-                        ><v-icon color="#1c1b2b">mdi-phone-outline</v-icon>
-                        <b class="label-b"> </b>{{ Helper.phone }}</span
+                      <span>
+                        <!--<v-icon color="#1c1b2b">mdi-phone-outline</v-icon> -->
+                        <b class=""> </b>{{ Helper.phone }}</span
                       >
                       <hr />
                       <span
@@ -167,7 +167,9 @@ export default {
     this.BureuaGetList();
     this.GetAllHelper();
   },
-  mounted() {},
+  mounted() {
+    this.Fetch();
+  },
 
   methods: {
     Fetch() {
@@ -258,7 +260,6 @@ body {
 }
 .label-b {
   color: #0bf4de;
-  padding: 5px;
 }
 .v-list-b {
   height: 400px;
