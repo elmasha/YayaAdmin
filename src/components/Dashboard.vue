@@ -37,8 +37,9 @@
       <div class="container-fluid">
         <hr />
         <b-row>
-          <b-col sm
-            ><v-card max-width="700" tile>
+          <b-col sm>
+            <!-- Col 1-->
+            <v-card max-width="700" tile>
               <h5 class="data-h3">List of registered bureau</h5>
               <v-list shaped class="v-list-b">
                 <v-subheader>Bureau list</v-subheader>
@@ -73,9 +74,58 @@
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
-            </v-card></b-col
-          >
-          <b-col sm>col-sm</b-col>
+            </v-card>
+          </b-col>
+          <b-col sm>
+            <!-- Col 2-->
+            <v-card max-width="700" tile>
+              <h5 class="data-h3">Registered employers</h5>
+              <v-list shaped class="v-list-b">
+                <v-subheader>Employers list</v-subheader>
+                <v-list-item-group
+                  v-for="(Helper, id) in Helpers"
+                  v-bind:key="id"
+                  color="primary"
+                >
+                  <v-list-item>
+                    <v-list-item-avatar>
+                      <img
+                        :src="showFirstImageGallery(Helper.imageHelper)"
+                        @error="avatar"
+                        class="image-bureau"
+                    /></v-list-item-avatar>
+
+                    <v-list-item-content>
+                      <v-list-item-title
+                        ><h3 class="name-bureau">
+                          <b>{{ Helper.Name }}</b>
+                        </h3></v-list-item-title
+                      >
+                      <span>
+                        <b class="label-b"> <v-icon color="#1c1b2b">mdi-at</v-icon> </b
+                        >{{ Helper.email }}</span
+                      >
+                      <span>
+                        <b class="label-b">
+                          <v-icon color="#1c1b2b">mdi-phone-outline</v-icon> </b
+                        >{{ Helper.phone }}</span
+                      >
+                      <hr />
+                      <span
+                        >Current employee:
+                        <b class="b-list"> {{ Helper.cCount }}</b></span
+                      >
+                      <br />
+                    </v-list-item-content>
+                    <v-btn icon>
+                      <v-icon>mdi-animation</v-icon>
+                    </v-btn>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-card>
+          </b-col>
+          <!-- Col 3-->
           <b-col sm>col-sm</b-col>
         </b-row>
       </div>
@@ -91,6 +141,7 @@ export default {
   created() {
     this.Fetch();
     this.BureuaGetList();
+    this.GetAllHelper();
   },
   mounted() {},
 
@@ -136,6 +187,25 @@ export default {
         });
     },
 
+    GetAllHelper() {
+      db.collection("Yaya_Employer")
+        .get()
+        .then((queryResult) => {
+          queryResult.forEach((doc) => {
+            const data = {
+              id: doc.id,
+              Name: doc.data().Name,
+              email: doc.data().Email,
+              imageHelper: doc.data().UserImage,
+              cCount: doc.data().CandidatesCount,
+              phone: doc.data().Phone_NO,
+            };
+            this.Helpers.push(data);
+            console.log("Helpers", data);
+          });
+        });
+    },
+
     showFirstImageGallery(v) {
       if (v == null) {
         return this.avatar;
@@ -149,6 +219,7 @@ export default {
     NoOfCandidate: 0,
     NoOfHelpers: 0,
     Bureaus: [],
+    Helpers: [],
     avatar: require("@/assets/img/avtar.png"),
   }),
 };
@@ -157,6 +228,7 @@ export default {
 <style>
 .label-b {
   color: #0bf4de;
+  padding: 5px;
 }
 .v-list-b {
   height: 400px;
