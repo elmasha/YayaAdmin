@@ -30,7 +30,7 @@
             size="60"
             style="color: #0bf4de"
           ></h5>
-          <v-list flat class="mt-16" dark>
+          <v-list flat class="mt-16 text-center" dark>
             <v-list-item-group v-model="selectItem">
               <v-list-item
                 v-for="(item, i) in items"
@@ -45,25 +45,33 @@
               </v-list-item>
 
               <a href="/">
-                <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
-                  <font-awesome-icon icon="chart-line" />
-                  <span>Overview</span>
-                </v-list-item></a
+                <v-list-item active-class="border" ripple="false">
+                  <v-icon>mdi-view-dashboard</v-icon>
+                </v-list-item>
+                <span id="one">Overview</span></a
               >
+              <hr class="hr" />
               <a href="/bureau">
                 <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
-                  <span>Bureau</span>
-                  <font-awesome-icon icon="coffee"></font-awesome-icon> </v-list-item
-              ></a>
+                  <v-icon>mdi-face-agent</v-icon>
+
+                  <font-awesome-icon icon="coffee"></font-awesome-icon>
+                </v-list-item>
+                <span id="one">Bureau</span></a
+              >
+              <hr class="hr" />
               <a href="/client">
                 <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
-                  <span>Clients</span>
+                  <v-icon>mdi-badge-account</v-icon>
                 </v-list-item>
-              </a>
-
-              <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
-                <span>Auth</span>
-              </v-list-item>
+                <span id="one">Clients</span></a
+              >
+              <hr class="hr" />
+              <a href="">
+                <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
+                  <v-icon>mdi-account-child</v-icon> </v-list-item
+                ><span id="one">Auth</span></a
+              >
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
@@ -80,22 +88,28 @@ export default {
     return {
       drawer: false,
       selectItem: 0,
-      items: [
-        { icon: "fas fa-plus" },
-        { icon: "fas fa-th-large" },
-        { icon: "fas fa-align-center" },
-        { icon: "fab fa-gitter" },
-        { icon: "fas fa-chart-line" },
-      ],
+      items: [{ icon: "fas fa-plus" }],
     };
   },
 };
 </script>
 
 <style scoped>
+#one {
+  text-decoration: none;
+  color: #fff;
+}
 a {
   text-decoration: none;
+  color: #fff;
+}
+
+span {
+  text-decoration: none;
   tab-size: 22px;
+}
+.hr {
+  background-color: rgb(75, 75, 75);
 }
 .border {
   text-decoration: none;
