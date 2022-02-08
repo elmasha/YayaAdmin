@@ -67,8 +67,11 @@
                         >Candidates: <b class="b-list"> {{ Bureau.NoOfCad }}</b></span
                       >
                     </v-list-item-content>
-                  </v-list-item></v-list-item-group
-                >
+                    <v-btn icon>
+                      <v-icon>mdi-animation</v-icon>
+                    </v-btn>
+                  </v-list-item>
+                </v-list-item-group>
               </v-list>
             </v-card></b-col
           >
