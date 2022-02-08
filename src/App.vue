@@ -20,6 +20,7 @@
         <v-navigation-drawer
           v-model="drawer"
           app
+          draggable="true"
           color="#1C1B2B"
           mini-variant
           mini-variant-width="100"

@@ -39,9 +39,9 @@
         <b-row>
           <b-col sm
             ><v-card max-width="700" tile>
-              <h5 class="data-h3">List of bureau registered</h5>
-              <v-list>
-                <v-subheader>Bureau</v-subheader>
+              <h5 class="data-h3">List of registered bureau</h5>
+              <v-list shaped class="v-list-b">
+                <v-subheader>Bureau list</v-subheader>
                 <v-list-item-group
                   v-for="(Bureau, id) in Bureaus"
                   v-bind:key="id"
@@ -60,11 +60,11 @@
                         ><h3 class="name-bureau">
                           <b>{{ Bureau.Name }}</b>
                         </h3></v-list-item-title
-                      ><br />
+                      >
                       <span><b class="label-b"> Bureau: </b>{{ Bureau.BName }}</span>
                       <br />
                       <span
-                        >Candidates <b class="b-list"> {{ Bureau.NoOfCad }}</b></span
+                        >Candidates: <b class="b-list"> {{ Bureau.NoOfCad }}</b></span
                       >
                     </v-list-item-content>
                   </v-list-item></v-list-item-group
@@ -155,7 +155,7 @@ export default {
 .label-b {
   color: #0bf4de;
 }
-.v-list {
+.v-list-b {
   height: 400px;
   overflow-y: auto;
 }
@@ -170,6 +170,7 @@ export default {
 .name-bureau {
   font-weight: 400;
   font-size: 16px;
+  color: #1c1b2b;
 }
 .image-bureau {
   width: 50px;
