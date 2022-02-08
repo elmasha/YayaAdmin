@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <v-content class="">
-      <b-row class="grey lighten-5 text-center b-row">
+      <b-row class="text-center b-row">
         <b-col sm>
           <v-card color="#0bf4de" class="pa-8">
             <v-card-title>
@@ -33,13 +33,12 @@
           </v-card></b-col
         >
       </b-row>
-
       <div class="container-fluid">
         <hr />
         <b-row>
           <b-col sm>
             <!-- Col 1-->
-            <v-card max-width="700" tile>
+            <v-card max-width="900" tile>
               <h5 class="data-h3">List of registered bureau</h5>
               <v-list shaped class="v-list-b">
                 <v-subheader>Bureau list</v-subheader>
@@ -62,10 +61,10 @@
                           <b>{{ Bureau.Name }}</b>
                         </h3></v-list-item-title
                       >
-                      <span><b class="label-b"> Bureau: </b>{{ Bureau.BName }}</span>
+                      <span><b class="label-b">Bureau:</b>{{ Bureau.BName }}</span>
                       <br />
                       <span
-                        >Candidates: <b class="b-list"> {{ Bureau.NoOfCad }}</b></span
+                        >Candidates:<b class="b-list">{{ Bureau.NoOfCad }}</b></span
                       >
                     </v-list-item-content>
                     <v-btn icon>
@@ -78,22 +77,19 @@
           </b-col>
           <b-col sm>
             <!-- Col 2-->
-            <v-card max-width="700" tile>
+            <v-card max-width="900" tile>
               <h5 class="data-h3">Registered employers</h5>
               <v-list shaped class="v-list-b">
                 <v-subheader>Employers list</v-subheader>
-                <v-list-item-group
-                  v-for="(Helper, id) in Helpers"
-                  v-bind:key="id"
-                  color="primary"
-                >
+                <v-list-item-group v-for="(Helper, id) in Helpers" v-bind:key="id">
                   <v-list-item>
                     <v-list-item-avatar>
                       <img
                         :src="showFirstImageGallery(Helper.imageHelper)"
                         @error="avatar"
                         class="image-bureau"
-                    /></v-list-item-avatar>
+                      />
+                    </v-list-item-avatar>
 
                     <v-list-item-content>
                       <v-list-item-title
@@ -102,13 +98,12 @@
                         </h3></v-list-item-title
                       >
                       <span>
-                        <b class="label-b"> <v-icon color="#1c1b2b">mdi-at</v-icon> </b
+                        <v-icon color="#1c1b2b">mdi-at</v-icon> <b class="label-b"> </b
                         >{{ Helper.email }}</span
                       >
-                      <span>
-                        <b class="label-b">
-                          <v-icon color="#1c1b2b">mdi-phone-outline</v-icon> </b
-                        >{{ Helper.phone }}</span
+                      <span
+                        ><v-icon color="#1c1b2b">mdi-phone-outline</v-icon>
+                        <b class="label-b"> </b>{{ Helper.phone }}</span
                       >
                       <hr />
                       <span
@@ -226,6 +221,12 @@ export default {
 </script>
 
 <style>
+body {
+  font-size: 14px;
+}
+.v-card {
+  border-color: #fff solid 2px;
+}
 .label-b {
   color: #0bf4de;
   padding: 5px;
