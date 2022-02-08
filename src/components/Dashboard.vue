@@ -1,35 +1,44 @@
 <template>
-  <div>
-    <v-app id="app" class="app">
-      <div class="">
-        <v-main class="grey lighten-4 text-center">
-          <v-row no-gutters>
-            <v-col cols="6" sm="6" lg="6" xs="6" md="6" class="d-flex col-md-12">
-              <v-card color="#0bf4de" class="pa-6">
-                <v-card-title>
-                  <span class="h1-name">No of bureau registered</span>
-                </v-card-title>
-                <v-divider class="mx-3"></v-divider>
-                <v-card-text>
-                  <h1 class="h1-dash">{{ NoOfBue }}</h1>
-                </v-card-text>
-              </v-card>
+  <div class="container-fluid">
+    <v-content class="">
+      <b-row class="grey lighten-5 text-center b-row">
+        <b-col sm>
+          <v-card color="#0bf4de" class="pa-8">
+            <v-card-title>
+              <p class="h1-name">No of bureau registered</p>
+            </v-card-title>
+            <v-card-text>
+              <h1 class="h1-dash" sm="3">{{ NoOfBue }}</h1>
+            </v-card-text>
+          </v-card></b-col
+        >
+        <b-col sm>
+          <v-card color="#0bf4de" class="pa-8">
+            <v-card-title class="h1-name">
+              <p class="h1-name">No of bureau candidate</p>
+            </v-card-title>
+            <v-card-text>
+              <h1 class="h1-dash" sm="3">{{ NoOfCandidate }}</h1>
+            </v-card-text>
+          </v-card></b-col
+        >
+        <b-col sm>
+          <v-card color="#0bf4de" class="pa-8">
+            <v-card-title class="h1-name">
+              <p class="h1-name">Total number of helper</p>
+            </v-card-title>
+            <v-card-text>
+              <h1 class="h1-dash" sm="3">{{ NoOfHelpers }}</h1>
+            </v-card-text>
+          </v-card></b-col
+        >
+      </b-row>
 
-              <v-spacer></v-spacer>
-              <v-card color="#0bf4de" class="pa-6">
-                <v-card-title class="h1-name">
-                  <span class="h1-name">No of bureau candidate</span>
-                </v-card-title>
-                <v-divider class="mx-6"></v-divider>
-                <v-card-text>
-                  <h1 class="h1-dash" sm="4">{{ NoOfCandidate }}</h1>
-                </v-card-text>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-main>
+      <div class="container-fluid">
+        <hr />
+        <h5 class="data-h3">List of bureau registered</h5>
       </div>
-    </v-app>
+    </v-content>
   </div>
 </template>
 
@@ -59,16 +68,30 @@ export default {
           (this.NoOfCandidate = doc.data().Total_number),
             console.log("Trash", this.trash);
         });
+      db.collection("Admin")
+        .doc("No_of_helpers")
+        .get()
+        .then((doc) => {
+          (this.NoOfHelpers = doc.data().No), console.log("Trash", this.trash);
+        });
     },
   },
   data: () => ({
     NoOfBue: 0,
     NoOfCandidate: 0,
+    NoOfHelpers: 0,
   }),
 };
 </script>
 
 <style>
+.b-row {
+  margin-top: 20px;
+}
+.data-h3 {
+  text-decoration: none;
+  text-emphasis: none;
+}
 h1 {
   color: #1c1b2b;
 }
@@ -87,13 +110,14 @@ h1 {
   padding: 22px;
   font-size: 30px;
   font-weight: 500;
-  color: #0bf4de;
+  color: #fff;
 }
 .h1-dash:hover {
   padding: 22px;
   font-size: 30px;
   font-weight: 500;
-  color: #fff;
+  color: #0bf4de;
+  text-decoration: none;
 }
 .h1-name {
   font-size: 16px;

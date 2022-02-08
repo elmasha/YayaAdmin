@@ -1,29 +1,28 @@
 <template>
   <v-app>
-    <v-main>
+    <v-content>
+      <v-toolbar dark color="#1C1B2B">
+        <v-app-bar-nav-icon
+          v-model="drawer"
+          @click="drawer = !drawer"
+        ></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Yaya Admin</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn icon>
+          <v-icon>mdi-export</v-icon>
+        </v-btn>
+      </v-toolbar>
+
       <nav>
-        <v-toolbar dark color="#1C1B2B">
-          <v-app-bar-nav-icon
-            v-model="drawer"
-            @click="drawer = !drawer"
-          ></v-app-bar-nav-icon>
-
-          <v-toolbar-title>Yaya Admin</v-toolbar-title>
-
-          <v-spacer></v-spacer>
-
-          <v-btn icon>
-            <v-icon>mdi-export</v-icon>
-          </v-btn>
-        </v-toolbar>
-
         <v-navigation-drawer
           v-model="drawer"
           app
           color="#1C1B2B"
           mini-variant
           mini-variant-width="100"
-          
         >
           <h5
             class="d-block text-center mx-auto mt-4"
@@ -68,8 +67,9 @@
           </v-list>
         </v-navigation-drawer>
       </nav>
-      <v-main> <router-view /> </v-main
-    ></v-main>
+
+      <v-content> <router-view /> </v-content
+    ></v-content>
   </v-app>
 </template>
 <script>
