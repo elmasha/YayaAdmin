@@ -15,10 +15,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue, IconsPlugin)
 
 
-
-
-
-
 Vue.use(firestorePlugin)
 Vue.use(vuetify)
 

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="container-fluid">
-      <h3>MyBureau Section{{ name }}</h3>
+      <h3>MyBureau Section   {{ name }}</h3>
     </div>
   </v-app>
 </template>
