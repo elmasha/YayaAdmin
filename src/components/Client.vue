@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div>
-      <h3>wfagsudvasbkj</h3>
+      <h3>Clents Section</h3>
     </div>
   </v-app>
 </template>

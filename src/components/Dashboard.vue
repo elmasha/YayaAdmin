@@ -170,7 +170,9 @@ export default {
   mounted() {
     this.Fetch();
   },
-
+  updated() {
+    this.Fetch();
+  },
   methods: {
     Fetch() {
       db.collection("Admin")

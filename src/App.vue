@@ -37,38 +37,40 @@
                 :key="i"
                 active-class="border"
                 class=""
-                :ripple="false"
               >
                 <v-list-item-icon>
                   <v-icon v-text="item.icon"></v-icon>
                 </v-list-item-icon>
               </v-list-item>
 
-              <a href="/">
-                <v-list-item active-class="border" ripple="false">
+              <router-link to="/"
+                ><v-list-item active-class="border">
                   <v-icon>mdi-view-dashboard</v-icon>
+                  <span id="one">Overview</span>
                 </v-list-item>
-                <span id="one">Overview</span></a
-              >
+              </router-link>
+
               <hr class="hr" />
-              <a href="/bureau">
-                <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
+              <router-link to="/bureau"
+                ><v-list-item active-class="border">
                   <v-icon>mdi-face-agent</v-icon>
 
                   <font-awesome-icon icon="coffee"></font-awesome-icon>
                 </v-list-item>
-                <span id="one">Bureau</span></a
+                <span id="one">Bureau</span></router-link
               >
+
               <hr class="hr" />
-              <a href="/client">
-                <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
+              <router-link to="/client">
+                <v-list-item active-class="border">
                   <v-icon>mdi-badge-account</v-icon>
                 </v-list-item>
-                <span id="one">Clients</span></a
+                <span id="one">Clients</span></router-link
               >
+
               <hr class="hr" />
               <a href="">
-                <v-list-item active-class="border" :v-slot="{ active }" ripple="false">
+                <v-list-item active-class="border">
                   <v-icon>mdi-account-child</v-icon> </v-list-item
                 ><span id="one">Auth</span></a
               >
@@ -99,7 +101,7 @@ export default {
   text-decoration: none;
   color: #fff;
 }
-a {
+.router-link {
   text-decoration: none;
   color: #fff;
 }

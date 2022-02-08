@@ -25,7 +25,7 @@ export default new Router({
             name: 'client',
             component: () =>
                 import ('../components/Client.vue')
-        },
+        }
 
     ]
 });
