@@ -262,6 +262,7 @@ export default {
 <style>
 body {
   font-size: 14px;
+  color: #1c1b2b;
 }
 .v-card {
   border-color: #fff solid 2px;
@@ -333,5 +334,24 @@ h1 {
 }
 .router-link {
   text-decoration: none;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0bf4de;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(95, 92, 92);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>
