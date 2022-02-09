@@ -1,6 +1,11 @@
 <template>
   <div class="container-fluid">
     <v-content class="">
+      <div v-for="(Bureau, id) in Bureaus" v-bind:key="id"></div>
+      <b-row class="b-row">
+        <b-col sm> <line-chart :data="data"></line-chart></b-col
+      ></b-row>
+
       <b-row class="text-center b-row">
         <b-col sm>
           <v-card color="#0bf4de" class="pa-8">
@@ -169,10 +174,12 @@ import db from "../firebaseInit";
 
 export default {
   name: "dashboard",
+
   created() {
     this.Fetch();
     this.BureuaGetList();
     this.GetAllHelper();
+    this.showCharts();
   },
   mounted() {
     this.Fetch();
@@ -180,6 +187,7 @@ export default {
   updated() {
     this.Fetch();
   },
+
   methods: {
     Fetch() {
       db.collection("Admin")
@@ -187,20 +195,18 @@ export default {
         .get()
         .then((doc) => {
           this.NoOfBue = doc.data().No;
-          console.log("Doc", this.NoOfBue);
         });
       db.collection("Admin")
         .doc("No_of_candidates")
         .get()
         .then((doc) => {
-          (this.NoOfCandidate = doc.data().Total_number),
-            console.log("Trash", this.trash);
+          this.NoOfCandidate = doc.data().Total_number;
         });
       db.collection("Admin")
         .doc("No_of_helpers")
         .get()
         .then((doc) => {
-          (this.NoOfHelpers = doc.data().No), console.log("Trash", this.trash);
+          this.NoOfHelpers = doc.data().No;
         });
     },
 
@@ -217,7 +223,6 @@ export default {
               BName: doc.data().Bureau_Name,
             };
             this.Bureaus.push(data);
-            console.log("All", data);
           });
         });
     },
@@ -235,7 +240,6 @@ export default {
               phone: doc.data().Phone_NO,
             };
             this.Helpers.push(data);
-            console.log("Helpers", data);
           });
         });
     },
@@ -247,6 +251,21 @@ export default {
         return v;
       }
     },
+
+    showCharts() {
+      db.collection("Charts")
+        .get()
+        .then((queryResult) => {
+          queryResult.forEach((doc) => {
+            const data1 = {
+              date: doc.data().date,
+              No: doc.data().No,
+            };
+            this.chartsGraph = [[data1.date.getTime(), data1.No]];
+            console.log("Charts", this.chartsGraph);
+          });
+        });
+    },
   },
   data: () => ({
     NoOfBue: 0,
@@ -254,7 +273,27 @@ export default {
     NoOfHelpers: 0,
     Bureaus: [],
     Helpers: [],
+    chartsGraph: [],
+    chart: {},
     avatar: require("@/assets/img/avtar.png"),
+    data: [
+      {
+        name: "Registration",
+        data: { "2017-01-01 00:00:00 -0800": 3, "2017-01-02 00:00:00 -0800": 4 },
+      },
+      {
+        name: "Candidates",
+        data: { "2017-01-01 00:00:00 -0800": 5, "2017-01-02 00:00:00 -0800": 9 },
+      },
+      {
+        name: "Helper",
+        data: { "2017-01-01 00:00:00 -0800": 4, "2017-01-02 00:00:00 -0800": 3 },
+      },
+      {
+        name: "Bureau",
+        data: { "2017-01-01 00:00:00 -0800": 7, "2017-01-02 00:00:00 -0800": 2 },
+      },
+    ],
   }),
 };
 </script>

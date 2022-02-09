@@ -12,6 +12,10 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import { Chart } from 'chart.js'
+import Chartkick from 'vue-chartkick'
+Vue.use(Chartkick.use(Chart));
+
 Vue.use(BootstrapVue, IconsPlugin)
 
 
@@ -27,5 +31,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
     router,
     vuetify,
+
     render: h => h(App)
 }).$mount('#app')
