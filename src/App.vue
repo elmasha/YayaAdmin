@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app olor="#1C1B2B">
     <v-content>
       <v-toolbar dark color="#1C1B2B">
         <v-app-bar-nav-icon
@@ -32,17 +32,6 @@
           ></h5>
           <v-list flat class="mt-16 text-center" dark>
             <v-list-item-group v-model="selectItem">
-              <v-list-item
-                v-for="(item, i) in items"
-                :key="i"
-                active-class="border"
-                class=""
-              >
-                <v-list-item-icon>
-                  <v-icon v-text="item.icon"></v-icon>
-                </v-list-item-icon>
-              </v-list-item>
-
               <router-link to="/" active-class="border"
                 ><v-list-item>
                   <v-icon>mdi-view-dashboard</v-icon>
@@ -54,7 +43,6 @@
               <router-link to="/bureau" active-class="border"
                 ><v-list-item>
                   <v-icon>mdi-face-agent</v-icon>
-
                   <font-awesome-icon icon="coffee"></font-awesome-icon>
                 </v-list-item>
                 <span id="one">Bureau</span></router-link

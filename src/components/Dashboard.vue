@@ -35,8 +35,8 @@
             <v-card-text>
               <h1 class="h1-dash" sm="3">{{ NoOfHelpers }}</h1>
             </v-card-text>
-          </v-card></b-col
-        >
+          </v-card>
+        </b-col>
       </b-row>
       <div class="container-fluid">
         <hr />
@@ -261,8 +261,11 @@ export default {
               date: doc.data().date,
               No: doc.data().No,
             };
-            this.chartsGraph = [[data1.date.getTime(), data1.No]];
-            console.log("Charts", this.chartsGraph);
+            this.chartsGraph = [data1.date, data1.No];
+            const aarr = Object.entries(this.chartsGraph);
+            this.chart = [aarr[1], aarr[0]];
+            this.arr = [this.chart[0], this.chart[1]];
+            console.log("Charts", JSON.stringify(this.arr[0]));
           });
         });
     },
@@ -275,6 +278,8 @@ export default {
     Helpers: [],
     chartsGraph: [],
     chart: {},
+    arr: [],
+    data2: [],
     avatar: require("@/assets/img/avtar.png"),
     data: [
       {
@@ -370,6 +375,7 @@ h1 {
   font-weight: 600;
   text-align: center;
   text-decoration: none;
+  color: #1c1b2b;
 }
 .router-link {
   text-decoration: none;
