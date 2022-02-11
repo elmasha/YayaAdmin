@@ -13,13 +13,19 @@
                 ></v-progress-linear>
               </template>
 
-              <v-card-title class="white--text mt-5">
-                <v-avatar size="90">
-                  <img alt="user" :src="showFirstImageGallery(B_image)" />
-                </v-avatar>
-                <p class="ml-6">{{ UserName }}</p>
-              </v-card-title>
+              <v-avatar size="100" class="white--text mt-8">
+                <img
+                  alt="user"
+                  :src="showFirstImageGallery(B_image)"
+                  class="image-bureau"
+                />
+              </v-avatar>
 
+              <v-card-title
+                ><p>
+                  {{ UserName }}
+                </p></v-card-title
+              >
               <v-card-text>
                 <!-- <v-rating
                     :value="NoOfCandidate"
@@ -67,17 +73,13 @@
               <h4 class="data-h4">{{ B_name }} candidates</h4>
               <v-list shaped class="v-list-c" color="#1c1b2b">
                 <v-subheader>Candidate list</v-subheader>
-                <v-list-item-group
-                  v-for="(Candidate, id) in Candidates"
-                  v-bind:key="id"
-                  color="#1c1b2b"
-                >
+                <v-list-item-group v-for="(Candidate, id) in Candidates" v-bind:key="id">
                   <v-list-item>
                     <v-list-item-avatar>
                       <img
                         :src="showFirstImageGallery(Candidate.C_image)"
                         @error="avatar"
-                        class="image-bureau"
+                        class="image-candidate"
                     /></v-list-item-avatar>
 
                     <v-list-item-content>
@@ -97,15 +99,15 @@
                       >
                     </v-list-item-content>
                     <v-btn icon>
-                      <v-icon>mdi-animation</v-icon>
+                      <router-link
+                        v-bind:to="{
+                          name: 'candidate',
+                          params: { id: Candidate.id },
+                        }"
+                      >
+                        <v-icon>mdi-information-outline</v-icon>
+                      </router-link>
                     </v-btn>
-                    <!--<router-link
-                      v-bind:to="{
-                        name: 'mybureau',
-                        params: { id: Bureau.id },
-                      }"
-                    >
-                    </router-link> -->
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
@@ -205,7 +207,11 @@ export default {
 </script>
 
 <style>
+.rout-link {
+  text-decoration: none;
+}
 body {
+  color: rgb(160, 160, 160);
 }
 .row-top {
   color: aliceblue;
@@ -242,7 +248,7 @@ span {
 .name-bureau {
   font-weight: 200;
   font-size: 15px;
-  color: #fff;
+  color: rgb(179, 176, 176);
 }
 .name-candidate {
   font-weight: 400;

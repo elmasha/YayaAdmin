@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { firestorePlugin } from 'vuefire'
 import router from './router'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import moment from 'moment'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -17,7 +18,7 @@ import Chartkick from 'vue-chartkick'
 Vue.use(Chartkick.use(Chart));
 
 Vue.use(BootstrapVue, IconsPlugin)
-
+Vue.use(moment)
 
 Vue.use(firestorePlugin)
 Vue.use(vuetify)

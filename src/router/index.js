@@ -31,7 +31,13 @@ export default new Router({
             name: 'mybureau',
             component: () =>
                 import ('../components/MyBureau.vue')
-        }
+        },
+        {
+            path: '/:id',
+            name: 'candidate',
+            component: () =>
+                import ('../components/Candidate.vue')
+        },
 
 
     ]
