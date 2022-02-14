@@ -18,16 +18,45 @@
         <b-row>
           <b-col sm>
             <!-- Col 1-->
-            <v-card max-width="900" tile>
+            <v-card max-width="700" tile>
               <v-list shaped class="v-list-b">
                 <v-subheader><h5>List of registered bureau</h5></v-subheader>
+                <v-form v-model="valid">
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" md="12" sm="12">
+                        <v-text-field
+                          v-model="firstname"
+                          :rules="nameRules"
+                          :counter="12"
+                          label="Search"
+                          required
+                        ></v-text-field
+                        ><v-fab-transition>
+                          <v-btn
+                            color="#0bf4de"
+                            fab
+                            small
+                            absolute
+                            bottom
+                            v-model="ids"
+                            v-on:click="SearchCat(ids)"
+                          >
+                            <v-icon color="black">mdi-magnify</v-icon>
+                          </v-btn>
+                        </v-fab-transition>
+                      </v-col></v-row
+                    >
+                  </v-container> </v-form
+                ><br />
+                <hr />
                 <v-list-item-group
                   v-for="(Bureau, id) in Bureaus"
                   v-bind:key="id"
                   color="primary"
                 >
                   <v-list-item>
-                    <v-list-item-avatar>
+                    <v-list-item-avatar size="60">
                       <img
                         :src="showFirstImageGallery(Bureau.image)"
                         @error="avatar"
@@ -137,7 +166,7 @@ export default {
   color: #0bf4de;
 }
 .label-b {
-  color: #0bf4de;
+  color: #808080;
 }
 .v-list-b {
   height: 900px;
@@ -147,10 +176,7 @@ export default {
   font-size: 15px;
   color: #1c1b2b;
 }
-.b-list :hover {
-  font-size: 20px;
-  color: #0bf4de;
-}
+
 .name-bureau {
   font-weight: 400;
   font-size: 16px;

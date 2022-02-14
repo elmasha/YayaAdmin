@@ -53,7 +53,7 @@
                   color="primary"
                 >
                   <v-list-item>
-                    <v-list-item-avatar>
+                    <v-list-item-avatar size="50">
                       <img
                         :src="showFirstImageGallery(Bureau.image)"
                         @error="avatar"
@@ -95,7 +95,7 @@
                 <v-subheader>Employers list</v-subheader>
                 <v-list-item-group v-for="(Helper, id) in Helpers" v-bind:key="id">
                   <v-list-item>
-                    <v-list-item-avatar>
+                    <v-list-item-avatar size="50">
                       <img
                         :src="showFirstImageGallery(Helper.imageHelper)"
                         @error="avatar"

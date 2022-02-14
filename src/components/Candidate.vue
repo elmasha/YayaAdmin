@@ -3,7 +3,22 @@
     <!-- <v-parallax src=""></v-parallax> -->
     <div class="container-fluid c-home">
       <div class="text-center h-2"><h2>Candidates info</h2></div>
+
       <v-main>
+        <v-form v-model="valid">
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-text-field
+                  v-model="firstname"
+                  :rules="nameRules"
+                  :counter="10"
+                  label="First name"
+                  required
+                ></v-text-field> </v-col
+            ></v-row>
+          </v-container>
+        </v-form>
         <b-row>
           <b-col sm></b-col>
           <b-col sm>

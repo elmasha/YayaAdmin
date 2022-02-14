@@ -17,12 +17,42 @@
         <b-row>
           <b-col sm>
             <!-- Col 2-->
-            <v-card max-width="900" tile>
+            <v-card max-width="700" tile>
               <v-list shaped class="v-list-b">
                 <v-subheader><h5>Registered employers</h5></v-subheader>
+                <v-form v-model="valid">
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" md="12" sm="12">
+                        <v-text-field
+                          v-model="firstname"
+                          :rules="nameRules"
+                          :counter="12"
+                          label="Search"
+                          required
+                        ></v-text-field
+                        ><v-fab-transition>
+                          <v-btn
+                            color="#0bf4de"
+                            fab
+                            small
+                            absolute
+                            bottom
+                            v-model="ids"
+                            v-on:click="SearchCat(ids)"
+                          >
+                            <v-icon color="black">mdi-magnify</v-icon>
+                          </v-btn>
+                        </v-fab-transition>
+                      </v-col></v-row
+                    >
+                  </v-container>
+                </v-form>
+                <br />
+                <hr />
                 <v-list-item-group v-for="(Helper, id) in Helpers" v-bind:key="id">
                   <v-list-item>
-                    <v-list-item-avatar>
+                    <v-list-item-avatar size="60">
                       <img
                         :src="showFirstImageGallery(Helper.imageHelper)"
                         @error="avatar"

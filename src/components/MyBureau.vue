@@ -73,9 +73,39 @@
               <h4 class="data-h4">{{ B_name }} candidates</h4>
               <v-list shaped class="v-list-c" color="#1c1b2b">
                 <v-subheader>Candidate list</v-subheader>
+                <v-form v-model="valid">
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" md="12" sm="12">
+                        <v-text-field
+                          v-model="firstname"
+                          :rules="nameRules"
+                          :counter="12"
+                          label="Search"
+                          required
+                        ></v-text-field
+                        ><v-fab-transition>
+                          <v-btn
+                            color="#0bf4de"
+                            fab
+                            small
+                            absolute
+                            bottom
+                            v-model="ids"
+                            v-on:click="SearchCat(ids)"
+                          >
+                            <v-icon color="black">mdi-magnify</v-icon>
+                          </v-btn>
+                        </v-fab-transition>
+                      </v-col></v-row
+                    >
+                  </v-container>
+                </v-form>
+                <br />
+                <hr />
                 <v-list-item-group v-for="(Candidate, id) in Candidates" v-bind:key="id">
                   <v-list-item>
-                    <v-list-item-avatar>
+                    <v-list-item-avatar size="60">
                       <img
                         :src="showFirstImageGallery(Candidate.C_image)"
                         @error="avatar"
@@ -90,6 +120,9 @@
                       >
                       <p class="name-candidate">
                         <span>Status: </span>{{ Candidate.C_status }}
+                      </p>
+                      <p class="name-candidate">
+                        <span>ID no: </span>{{ Candidate.C_id_no }}
                       </p>
                       <br />
                       <span class="work-candidate"
@@ -146,7 +179,6 @@ export default {
             vm.B_county = doc.data().County;
             vm.B_box = doc.data().Box_No;
             vm.NoOfCandidate = doc.data().No_of_candidates;
-            console.log("Name", vm.UserName);
           });
         });
       });
@@ -156,6 +188,7 @@ export default {
     UserName: null,
     Uid: null,
     id: null,
+    ids: null,
     B_name: null,
     B_image: null,
     B_id: null,
@@ -170,11 +203,34 @@ export default {
     C_workStatus: null,
     C_image: null,
     C_id: null,
+    C_id_no: null,
     NoOfCandidate: 0,
     Candidates: [],
     avatar: require("@/assets/img/avtar.png"),
   }),
   methods: {
+    SearchCat(val) {
+      this.Candidates.splice(this.Candidates);
+      db.collection("Yaya_Candidates")
+        .where("ID_no", "==", val)
+        .get()
+        .then((queryResult) => {
+          queryResult.forEach((doc) => {
+            const data = {
+              id: doc.id,
+              C_id: doc.data().CandidateID,
+              C_image: doc.data().Profile_image,
+              C_name: doc.data().Candidate_name,
+              C_status: doc.data().Status,
+              C_phone: doc.data().Mobile_no,
+              C_workStatus: doc.data().Working_status,
+              C_gender: doc.data().Gender,
+            };
+            this.Candidates.push(data);
+            console.log("My Candidate", this.Candidates);
+          });
+        });
+    },
     fetch() {
       db.collection("Yaya_Candidates")
         .where("User_ID", "==", this.Uid)
@@ -189,9 +245,9 @@ export default {
               C_phone: doc.data().Mobile_no,
               C_workStatus: doc.data().Working_status,
               C_gender: doc.data().Gender,
+              C_id_no: doc.data().ID_no,
             };
             this.Candidates.push(data);
-            console.log("My Candidate", this.Candidates);
           });
         });
     },
