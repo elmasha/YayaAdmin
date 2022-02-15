@@ -1,8 +1,8 @@
 import firebase from 'firebase/compat/app'
-import 'firebase/compat/firestore'
+import 'firebase/compat/database'
 import firebaseConfig from "./firebaseConfig"
 
-const firebaseApp = firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig)
 
-var db = firebaseApp.firestore();
-export default db
+const db_real = firebase.database();
+export default db_real

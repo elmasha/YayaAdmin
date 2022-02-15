@@ -5,4 +5,6 @@ import firebaseConfig from "./firebaseConfig"
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 
 var db = firebaseApp.firestore();
+
+
 export default db

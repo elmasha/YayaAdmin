@@ -3,8 +3,10 @@
     <v-content class="">
       <div v-for="(Bureau, id) in Bureaus" v-bind:key="id"></div>
       <b-row class="b-row">
-        <b-col sm> <line-chart :data="data"></line-chart></b-col
-      ></b-row>
+        <b-col sm>
+          <line-chart :data="data"></line-chart>
+        </b-col>
+      </b-row>
 
       <b-row class="text-center b-row">
         <b-col sm>
@@ -171,10 +173,24 @@
 
 <script>
 import db from "../firebaseInit";
+import db_real from "../firebaseInit2";
+import { onMounted, reactive } from "@vue/runtime-core";
+import "firebase/compat/database";
 
 export default {
   name: "dashboard",
+  setup() {
+    const state = reactive({
+      chartsDataSet: {},
+    });
 
+    onMounted(async () => {
+      const chartSet = db_real.ref("charts/Bureau_chart").on("value");
+      state.chartsDataSet = chartSet.val();
+    });
+
+    return { state };
+  },
   created() {
     this.Fetch();
     this.BureuaGetList();
@@ -253,6 +269,9 @@ export default {
     },
 
     showCharts() {
+      var labelsArray = [];
+      var dataArray = [];
+
       db.collection("Charts")
         .get()
         .then((queryResult) => {
@@ -261,11 +280,18 @@ export default {
               date: doc.data().date,
               No: doc.data().No,
             };
-            this.chartsGraph = [data1.date, data1.No];
+            var keys = Object.keys(data1);
+
+            for (var i = 0; i < keys.length; i++) {
+              var k = keys[i];
+              labelsArray.push(k);
+            }
+
+            this.chartsGraph = [labelsArray, dataArray];
             const aarr = Object.entries(this.chartsGraph);
             this.chart = [aarr[1], aarr[0]];
             this.arr = [this.chart[0], this.chart[1]];
-            console.log("Charts", JSON.stringify(this.arr[0]));
+            // console.log("Charts", labelsArray);
           });
         });
     },
@@ -279,6 +305,9 @@ export default {
     chartsGraph: [],
     chart: {},
     arr: [],
+    state: {},
+    labelDate: null,
+    chartData: null,
     data2: [],
     avatar: require("@/assets/img/avtar.png"),
     data: [

@@ -127,6 +127,7 @@
                     </v-list-item-content>
                     <v-btn icon>
                       <router-link
+                      
                         v-bind:to="{
                           name: 'candidate',
                           params: { id: Candidate.id },

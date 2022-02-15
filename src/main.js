@@ -15,10 +15,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import { Chart } from 'chart.js'
 import Chartkick from 'vue-chartkick'
+
+
 Vue.use(Chartkick.use(Chart));
 
 Vue.use(BootstrapVue, IconsPlugin)
 Vue.use(moment)
+
+
 
 Vue.use(firestorePlugin)
 Vue.use(vuetify)
