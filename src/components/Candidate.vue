@@ -33,11 +33,11 @@
                 </div>
                 <div>
                   <span
-                    >Age:<b> {{ C_age }}</b>
+                    >Age:<b> {{ C_age }} </b>
                   </span>
                 </div>
                 <div>
-                  County:<b> {{ C_county }}</b>
+                  County:<b> {{ C_county }} / {{ C_Ward }}</b>
                 </div>
                 <div>
                   <span
@@ -151,6 +151,7 @@ export default {
             vm.C_status = doc.data().Status;
             vm.C_dob = doc.data().DOB;
             vm.C_age = doc.data().Age;
+            vm.C_Ward = doc.data().Ward;
             vm.C_salary = doc.data().Salary;
             vm.C_BureauName = doc.data().BureauName;
             vm.C_BureauNo = doc.data().BureauNo;
@@ -174,6 +175,7 @@ export default {
     C_salary: null,
     C_status: null,
     C_RegDate: null,
+    C_Ward: null,
     C_BureauName: null,
     C_BureauNo: null,
     C_WorkStatus: null,
