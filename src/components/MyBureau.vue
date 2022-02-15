@@ -4,14 +4,8 @@
       <v-content>
         <b-row class="row-top">
           <b-col sm class="col-top">
-            <v-card :loading="loading" class="my-2" max-width="500" dark color="#1c1b2b">
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
+            <v-card class="my-2" max-width="500" dark color="#1c1b2b">
+              <template slot="progress"> </template>
 
               <v-avatar size="100" class="white--text mt-8">
                 <img
@@ -63,17 +57,17 @@
               >
 
               <v-card-actions>
-                <v-btn color="deep-white lighten-5" text @click="reserve"> Call </v-btn>
+                <v-btn color="deep-white lighten-5" text> Call </v-btn>
               </v-card-actions>
             </v-card>
           </b-col>
           <hr />
           <b-col sm>
             <v-card max-width="700" dark color="#1c1b2b">
-              <h4 class="data-h4">{{ B_name }} candidates</h4>
+              <h5 class="data-h4">{{ B_name }} candidates</h5>
               <v-list shaped class="v-list-c" color="#1c1b2b">
                 <v-subheader>Candidate list</v-subheader>
-                <v-form v-model="valid">
+                <v-form>
                   <v-container>
                     <v-row>
                       <v-col cols="12" md="8" sm="8" xl="10">
@@ -92,7 +86,7 @@
                               color="#0bf4de"
                               fab
                               small
-                              @click="SearchCat(ids)"
+                              v-on:click="SearchCat(ids)"
                             >
                               <v-icon color="black">mdi-magnify</v-icon>
                             </v-btn>

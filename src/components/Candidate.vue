@@ -2,15 +2,13 @@
   <v-app>
     <!-- <v-parallax src=""></v-parallax> -->
     <div class="container-fluid c-home">
-      <div class="text-center h-2"><h2>Candidates info</h2></div>
-
       <v-main>
-       
+        <div class="text-center h-2"><h4>Candidates info</h4></div>
         <b-row>
           <b-col sm></b-col>
           <b-col sm>
-            <v-card class="my-2" max-width="700">
-              <v-avatar size="100" class="white--text mt-10">
+            <v-card class="my-7" max-width="900">
+              <v-avatar size="150" class="white--text mt-10">
                 <img
                   alt="user"
                   :src="showFirstImageGallery(C_image)"
@@ -26,12 +24,12 @@
               <v-card-text>
                 <div>
                   <v-icon color="#0bf4de">mdi-phone-outline</v-icon>
-                  {{ C_phone }}
+                  <b> {{ C_phone }}</b>
                 </div>
 
                 <div>
                   <v-icon color="#0bf4de">mdi-card-account-details-outline</v-icon>
-                  {{ C_id }}
+                  <b>{{ C_id }}</b>
                 </div>
                 <div>
                   <span
@@ -94,7 +92,7 @@
 </template>
 <script>
 import db from "../firebaseInit";
-import moment from "vue-moment";
+import moment from "moment";
 
 export default {
   name: "candidate",
