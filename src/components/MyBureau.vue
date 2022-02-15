@@ -4,7 +4,7 @@
       <v-content>
         <b-row class="row-top">
           <b-col sm class="col-top">
-            <v-card :loading="loading" class="my-2" max-width="400" dark color="#1c1b2b">
+            <v-card :loading="loading" class="my-2" max-width="500" dark color="#1c1b2b">
               <template slot="progress">
                 <v-progress-linear
                   color="deep-purple"
@@ -69,36 +69,37 @@
           </b-col>
           <hr />
           <b-col sm>
-            <v-card max-width="500" dark color="#1c1b2b">
+            <v-card max-width="700" dark color="#1c1b2b">
               <h4 class="data-h4">{{ B_name }} candidates</h4>
               <v-list shaped class="v-list-c" color="#1c1b2b">
                 <v-subheader>Candidate list</v-subheader>
                 <v-form v-model="valid">
                   <v-container>
                     <v-row>
-                      <v-col cols="12" md="12" sm="12">
-                        <v-text-field
-                          v-model="firstname"
-                          :rules="nameRules"
-                          :counter="12"
-                          label="Search"
-                          required
-                        ></v-text-field
-                        ><v-fab-transition>
-                          <v-btn
-                            color="#0bf4de"
-                            fab
-                            small
-                            absolute
-                            bottom
+                      <v-col cols="12" md="8" sm="8" xl="10">
+                        <div class="d-flex">
+                          <v-text-field
                             v-model="ids"
-                            v-on:click="SearchCat(ids)"
-                          >
-                            <v-icon color="black">mdi-magnify</v-icon>
-                          </v-btn>
-                        </v-fab-transition>
-                      </v-col></v-row
-                    >
+                            :counter="12"
+                            label="Search"
+                            required
+                            outlined
+                            clearable
+                          ></v-text-field
+                          ><v-fab-transition>
+                            <v-btn
+                              class="btn-search"
+                              color="#0bf4de"
+                              fab
+                              small
+                              @click="SearchCat(ids)"
+                            >
+                              <v-icon color="black">mdi-magnify</v-icon>
+                            </v-btn>
+                          </v-fab-transition>
+                        </div>
+                      </v-col>
+                    </v-row>
                   </v-container>
                 </v-form>
                 <br />
@@ -163,6 +164,7 @@ export default {
   mounted() {
     this.fetch();
   },
+  computed() {},
   beforeRouteEnter: (to, from, next) => {
     db.collection("Yaya_Bureau")
       .where("User_id", "==", to.params.id)
@@ -210,26 +212,30 @@ export default {
   }),
   methods: {
     SearchCat(val) {
-      this.Candidates.splice(this.Candidates);
-      db.collection("Yaya_Candidates")
-        .where("ID_no", "==", val)
-        .get()
-        .then((queryResult) => {
-          queryResult.forEach((doc) => {
-            const data = {
-              id: doc.id,
-              C_id: doc.data().CandidateID,
-              C_image: doc.data().Profile_image,
-              C_name: doc.data().Candidate_name,
-              C_status: doc.data().Status,
-              C_phone: doc.data().Mobile_no,
-              C_workStatus: doc.data().Working_status,
-              C_gender: doc.data().Gender,
-            };
-            this.Candidates.push(data);
-            console.log("My Candidate", this.Candidates);
+      if (val == null) {
+        console.log("My Candidate", val);
+      } else {
+        this.Candidates.splice(this.Candidates);
+        db.collection("Yaya_Candidates")
+          .where("ID_no", "==", val)
+          .get()
+          .then((queryResult) => {
+            queryResult.forEach((doc) => {
+              const data = {
+                id: doc.id,
+                C_id: doc.data().CandidateID,
+                C_image: doc.data().Profile_image,
+                C_name: doc.data().Candidate_name,
+                C_status: doc.data().Status,
+                C_phone: doc.data().Mobile_no,
+                C_workStatus: doc.data().Working_status,
+                C_gender: doc.data().Gender,
+              };
+              this.Candidates.push(data);
+              console.log("My Candidate", this.Candidates);
+            });
           });
-        });
+      }
     },
     fetch() {
       db.collection("Yaya_Candidates")
@@ -263,6 +269,10 @@ export default {
 </script>
 
 <style>
+.btn-search {
+  margin-left: 18px;
+  margin-top: 8px;
+}
 .rout-link {
   text-decoration: none;
 }

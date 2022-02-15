@@ -21,30 +21,31 @@
             <v-card max-width="700" tile>
               <v-list shaped class="v-list-b">
                 <v-subheader><h5>List of registered bureau</h5></v-subheader>
-                <v-form v-model="valid">
+                <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" md="12" sm="12">
-                        <v-text-field
-                          v-model="firstname"
-                          :rules="nameRules"
-                          :counter="12"
-                          label="Search"
-                          required
-                        ></v-text-field
-                        ><v-fab-transition>
-                          <v-btn
-                            color="#0bf4de"
-                            fab
-                            small
-                            absolute
-                            bottom
+                      <v-col cols="12" md="8" sm="8" class="d-flex">
+                        <div class="container-fluid d-flex">
+                          <v-text-field
                             v-model="ids"
-                            v-on:click="SearchCat(ids)"
-                          >
-                            <v-icon color="black">mdi-magnify</v-icon>
-                          </v-btn>
-                        </v-fab-transition>
+                            label="Search"
+                            :counter="12"
+                            outlined
+                            clearable
+                          ></v-text-field>
+                          <v-fab-transition>
+                            <v-btn
+                              class="btn-search"
+                              color="#0bf4de"
+                              fab
+                              small
+                              right
+                              @click="SearchCat(ids)"
+                            >
+                              <v-icon color="black">mdi-magnify</v-icon>
+                            </v-btn>
+                          </v-fab-transition>
+                        </div>
                       </v-col></v-row
                     >
                   </v-container> </v-form
@@ -68,7 +69,8 @@
                         ><h3 class="name-bureau">
                           <b>{{ Bureau.Name }}</b>
                         </h3></v-list-item-title
-                      >
+                      ><span><b class="label-b">ID no:</b>{{ Bureau.Id_No }}</span>
+                      <br />
                       <span><b class="label-b">Bureau:</b>{{ Bureau.BName }}</span>
                       <br />
                       <span
@@ -106,6 +108,30 @@ export default {
   },
   created() {},
   methods: {
+    SearchCat(val) {
+      if (val == null) {
+        console.log("My Candidate", val);
+      } else {
+        this.Bureaus.splice(this.Bureaus);
+        db.collection("Yaya_Bureau")
+          .where("ID_no", "==", val)
+          .get()
+          .then((queryResult) => {
+            queryResult.forEach((doc) => {
+              const data = {
+                id: doc.id,
+                Id_No: doc.data().ID_no,
+                Name: doc.data().Name,
+                NoOfCad: doc.data().No_of_candidates,
+                image: doc.data().Bureau_Image,
+                BName: doc.data().Bureau_Name,
+              };
+              this.Bureaus.push(data);
+              console.log("My Candidate", val);
+            });
+          });
+      }
+    },
     Fetch() {
       db.collection("Admin")
         .doc("No_of_bureau")
@@ -121,13 +147,13 @@ export default {
           queryResult.forEach((doc) => {
             const data = {
               id: doc.id,
+              Id_No: doc.data().ID_no,
               Name: doc.data().Name,
               NoOfCad: doc.data().No_of_candidates,
               image: doc.data().Bureau_Image,
               BName: doc.data().Bureau_Name,
             };
             this.Bureaus.push(data);
-            console.log("All", this.Bureaus);
           });
         });
     },
@@ -143,6 +169,7 @@ export default {
     return {
       NoOfBue: 0,
       Bureaus: [],
+      ids: null,
       avatar: require("@/assets/img/avtar.png"),
     };
   },
@@ -150,6 +177,10 @@ export default {
 </script>
 
 <style>
+.btn-search {
+  margin-left: 18px;
+  margin-top: 8px;
+}
 .dash-top {
   color: #fff;
   margin: 10px;

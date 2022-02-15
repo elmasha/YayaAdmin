@@ -20,30 +20,31 @@
             <v-card max-width="700" tile>
               <v-list shaped class="v-list-b">
                 <v-subheader><h5>Registered employers</h5></v-subheader>
-                <v-form v-model="valid">
+                <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" md="12" sm="12">
-                        <v-text-field
-                          v-model="firstname"
-                          :rules="nameRules"
-                          :counter="12"
-                          label="Search"
-                          required
-                        ></v-text-field
-                        ><v-fab-transition>
-                          <v-btn
-                            color="#0bf4de"
-                            fab
-                            small
-                            absolute
-                            bottom
+                      <v-col cols="12" md="8" sm="8">
+                        <div class="d-flex container-fluid">
+                          <v-text-field
                             v-model="ids"
-                            v-on:click="SearchCat(ids)"
-                          >
-                            <v-icon color="black">mdi-magnify</v-icon>
-                          </v-btn>
-                        </v-fab-transition>
+                            :counter="12"
+                            label="Search"
+                            clearable
+                            outlined
+                            required
+                          ></v-text-field
+                          ><v-fab-transition>
+                            <v-btn
+                              class="btn-search"
+                              color="#0bf4de"
+                              fab
+                              small
+                              v-on:click="SearchCat(ids)"
+                            >
+                              <v-icon color="black">mdi-magnify</v-icon>
+                            </v-btn>
+                          </v-fab-transition>
+                        </div>
                       </v-col></v-row
                     >
                   </v-container>
@@ -70,6 +71,11 @@
                         <!-- <b class="label-b">mdi-at</b>-->
                         {{ Helper.email }}</span
                       >
+                      <span>
+                        <!-- <b class="label-b">mdi-at</b>-->
+                        ID no:
+                        <b> {{ Helper.Id_No }}</b>
+                      </span>
                       <span>
                         <!--<v-icon color="#1c1b2b">mdi-phone-outline</v-icon> -->
                         <b class=""> </b>{{ Helper.phone }}</span
@@ -105,6 +111,31 @@ export default {
   },
   created() {},
   methods: {
+    SearchCat(val) {
+      if (val == null) {
+        console.log("My Candidate", val);
+      } else {
+        this.Helpers.splice(this.Helpers);
+        db.collection("Yaya_Employer")
+          .where("ID_no", "==", val)
+          .get()
+          .then((queryResult) => {
+            queryResult.forEach((doc) => {
+              const data = {
+                id: doc.id,
+                Name: doc.data().Name,
+                email: doc.data().Email,
+                Id_No: doc.data().ID_no,
+                imageHelper: doc.data().UserImage,
+                cCount: doc.data().CandidatesCount,
+                phone: doc.data().Phone_NO,
+              };
+              this.Helpers.push(data);
+              console.log("My Candidate", val);
+            });
+          });
+      }
+    },
     Fetch() {
       db.collection("Admin")
         .doc("No_of_helpers")
@@ -121,6 +152,7 @@ export default {
             const data = {
               id: doc.id,
               Name: doc.data().Name,
+              Id_No: doc.data().ID_no,
               email: doc.data().Email,
               imageHelper: doc.data().UserImage,
               cCount: doc.data().CandidatesCount,
@@ -151,6 +183,10 @@ export default {
 </script>
 
 <style>
+.btn-search {
+  margin-left: 18px;
+  margin-top: 8px;
+}
 .dash-top {
   color: #fff;
   margin: 10px;
