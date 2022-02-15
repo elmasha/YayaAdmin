@@ -24,8 +24,8 @@
                 <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" md="8" sm="8" class="d-flex">
-                        <div class="container-fluid d-flex">
+                      <v-col cols="12" md="8" sm="8">
+                        <div class="d-flex">
                           <v-text-field
                             v-model="ids"
                             label="Search"
@@ -178,7 +178,7 @@ export default {
 
 <style>
 .btn-search {
-  margin-left: 18px;
+  margin-left: 8px;
   margin-top: 8px;
 }
 .dash-top {

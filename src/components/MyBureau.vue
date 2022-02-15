@@ -269,7 +269,7 @@ export default {
 
 <style>
 .btn-search {
-  margin-left: 18px;
+  margin-left: 8px;
   margin-top: 8px;
 }
 .rout-link {
