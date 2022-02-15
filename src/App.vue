@@ -1,5 +1,5 @@
 <template>
-  <v-app olor="#1C1B2B">
+  <v-app color="#1C1B2B">
     <v-content>
       <v-toolbar dark color="#1C1B2B">
         <v-app-bar-nav-icon

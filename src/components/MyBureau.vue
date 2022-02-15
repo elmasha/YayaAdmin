@@ -102,8 +102,7 @@
                     </v-row>
                   </v-container>
                 </v-form>
-                <br />
-                <hr />
+
                 <v-list-item-group v-for="(Candidate, id) in Candidates" v-bind:key="id">
                   <v-list-item>
                     <v-list-item-avatar size="60">

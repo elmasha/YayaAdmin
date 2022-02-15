@@ -49,8 +49,7 @@
                     >
                   </v-container>
                 </v-form>
-                <br />
-                <hr />
+
                 <v-list-item-group v-for="(Helper, id) in Helpers" v-bind:key="id">
                   <v-list-item>
                     <v-list-item-avatar size="60">
