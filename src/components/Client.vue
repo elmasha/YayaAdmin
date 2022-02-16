@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <div class="container-fluid">
+  <v-app class="container-fluid">
+    <div>
       <b-row>
         <b-col sm>
           <v-card color="#1c1b2b" class="pa-8 dash-top">
@@ -17,13 +17,13 @@
         <b-row>
           <b-col sm>
             <!-- Col 2-->
-            <v-card max-width="700" tile>
+            <v-card max-width="600" tile>
               <v-list shaped class="v-list-b">
                 <v-subheader><h5>Registered employers</h5></v-subheader>
                 <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" md="8" sm="8">
+                      <v-col cols="12" md="10" sm="10">
                         <div class="d-flex">
                           <v-text-field
                             v-model="ids"

@@ -1,6 +1,6 @@
 <template>
-  <v-app color="#1C1B2B">
-    <v-content>
+  <v-main color="#1C1B2B">
+    <nav>
       <v-toolbar dark color="#1C1B2B">
         <v-app-bar-nav-icon
           v-model="drawer"
@@ -15,59 +15,54 @@
           <v-icon>mdi-export</v-icon>
         </v-btn>
       </v-toolbar>
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        draggable="true"
+        color="#1C1B2B"
+        mini-variant
+        mini-variant-width="100"
+      >
+        <h5
+          class="d-block text-center mx-auto mt-4"
+          size="60"
+          style="color: #0bf4de"
+        ></h5>
+        <v-list flat class="mt-16 text-center" dark>
+          <v-list-item-group v-model="selectItem">
+            <router-link to="/" active-class="border"
+              ><v-list-item>
+                <v-icon>mdi-view-dashboard</v-icon>
+              </v-list-item>
+              <span id="one">Overview</span>
+            </router-link>
 
-      <nav>
-        <v-navigation-drawer
-          v-model="drawer"
-          app
-          draggable="true"
-          color="#1C1B2B"
-          mini-variant
-          mini-variant-width="100"
-        >
-          <h5
-            class="d-block text-center mx-auto mt-4"
-            size="60"
-            style="color: #0bf4de"
-          ></h5>
-          <v-list flat class="mt-16 text-center" dark>
-            <v-list-item-group v-model="selectItem">
-              <router-link to="/" active-class="border"
-                ><v-list-item>
-                  <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item>
-                <span id="one">Overview</span>
-              </router-link>
+            <router-link to="/bureau" active-class="border"
+              ><v-list-item>
+                <v-icon>mdi-face-agent</v-icon>
+                <font-awesome-icon icon="coffee"></font-awesome-icon>
+              </v-list-item>
+              <span id="one">Bureau</span></router-link
+            >
 
-              <hr class="hr" />
-              <router-link to="/bureau" active-class="border"
-                ><v-list-item>
-                  <v-icon>mdi-face-agent</v-icon>
-                  <font-awesome-icon icon="coffee"></font-awesome-icon>
-                </v-list-item>
-                <span id="one">Bureau</span></router-link
-              >
+            <router-link to="/client" active-class="border">
+              <v-list-item>
+                <v-icon>mdi-badge-account</v-icon>
+              </v-list-item>
+              <span id="one">Clients</span></router-link
+            >
 
-              <hr class="hr" />
-              <router-link to="/client" active-class="border">
-                <v-list-item>
-                  <v-icon>mdi-badge-account</v-icon>
-                </v-list-item>
-                <span id="one">Clients</span></router-link
-              >
+            <router-link to="/" active-class="border">
+              <v-list-item> <v-icon>mdi-account-child</v-icon> </v-list-item>
+              <span id="one">Auth</span>
+            </router-link>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
+    </nav>
 
-              <hr class="hr" />
-              <router-link to="/" active-class="border">
-                <v-list-item> <v-icon>mdi-account-child</v-icon> </v-list-item>
-                <span id="one">Auth</span>
-              </router-link>
-            </v-list-item-group>
-          </v-list>
-        </v-navigation-drawer>
-      </nav>
-      <v-main> <router-view /></v-main>
-    </v-content>
-  </v-app>
+    <router-view />
+  </v-main>
 </template>
 <script>
 // import SideBar from "./components/SideBar.vue";

@@ -70,7 +70,7 @@
                 <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" md="8" sm="8" xl="10">
+                      <v-col cols="12" md="10" sm="10" xl="10">
                         <div class="d-flex">
                           <v-text-field
                             v-model="ids"
@@ -127,7 +127,6 @@
                     </v-list-item-content>
                     <v-btn icon>
                       <router-link
-                      
                         v-bind:to="{
                           name: 'candidate',
                           params: { id: Candidate.id },

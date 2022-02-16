@@ -18,15 +18,16 @@
         <b-row>
           <b-col sm>
             <!-- Col 1-->
-            <v-card max-width="700" tile>
+            <v-card max-width="600" tile>
               <v-list shaped class="v-list-b">
                 <v-subheader><h5>List of registered bureau</h5></v-subheader>
                 <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" md="8" sm="8">
+                      <v-col cols="12" md="10" sm="10">
                         <div class="d-flex">
                           <v-text-field
+                            id="search-text"
                             v-model="ids"
                             label="Search"
                             :counter="12"
@@ -111,6 +112,8 @@ export default {
     SearchCat(val) {
       if (val == null) {
         console.log("My Candidate", val);
+        this.Bureaus.splice(this.Bureaus);
+        this.BureauGetList();
       } else {
         this.Bureaus.splice(this.Bureaus);
         db.collection("Yaya_Bureau")
@@ -127,7 +130,11 @@ export default {
                 BName: doc.data().Bureau_Name,
               };
               this.Bureaus.push(data);
-              console.log("My Candidate", val);
+              console.log("My Candidate", data);
+
+              if (doc == null) {
+                console.log("My data", doc);
+              }
             });
           });
       }
