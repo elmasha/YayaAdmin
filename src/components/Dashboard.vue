@@ -27,6 +27,14 @@
               <v-card-text>
                 <h1 class="h1-dash" sm="3">{{ NoOfCandidate }}</h1>
               </v-card-text>
+              <div class="d-flex">
+                <v-card-text>
+                  <span class="h1-dash1" sm="3">Available: {{ available }}</span>
+                </v-card-text>
+                <v-card-text>
+                  <span class="h1-dash2" sm="3">Unavailable: {{ unavailable }}</span>
+                </v-card-text>
+              </div>
             </v-card>
           </b-col>
           <b-col sm>
@@ -227,6 +235,18 @@ export default {
         .then((doc) => {
           this.NoOfHelpers = doc.data().No;
         });
+      db.collection("Admin")
+        .doc("Status")
+        .get()
+        .then((doc) => {
+          this.available = doc.data().Available;
+        });
+      db.collection("Admin")
+        .doc("Status")
+        .get()
+        .then((doc) => {
+          this.unavailable = doc.data().Unavailable;
+        });
     },
 
     BureuaGetList() {
@@ -292,6 +312,8 @@ export default {
     Helpers: [],
     chartsGraph: [],
     arr: [],
+    available: null,
+    unavailable: null,
     labelDate: null,
     chartData: null,
     data2: [],
@@ -377,6 +399,24 @@ h1 {
   font-size: 30px;
   font-weight: 500;
   color: #fff;
+}
+.h1-dash1 {
+  background-color: #15dd0e;
+  position: relative;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1c1b2b;
+}
+.h1-dash2 {
+  background-color: #da0c0c;
+  position: relative;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1c1b2b;
 }
 .h1-dash:hover {
   padding: 22px;

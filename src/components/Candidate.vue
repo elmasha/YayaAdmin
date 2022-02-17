@@ -6,8 +6,8 @@
         <div class="text-center h-2"><h4>Candidates info</h4></div>
         <b-row>
           <b-col sm></b-col>
-          <b-col sm>
-            <v-card class="my-7" max-width="900">
+          <b-col sm="8" xl="8" md="8">
+            <v-card class="my-12" max-width="900">
               <v-avatar size="150" class="white--text mt-10">
                 <img
                   alt="user"
