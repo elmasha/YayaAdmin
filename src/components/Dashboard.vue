@@ -27,12 +27,16 @@
               <v-card-text>
                 <h1 class="h1-dash" sm="3">{{ NoOfCandidate }}</h1>
               </v-card-text>
-              <div class="d-flex">
+              <div class="">
                 <v-card-text>
-                  <span class="h1-dash1" sm="3">Available: {{ available }}</span>
+                  <span class="h1-dash1" sm="3"
+                    ><span class="h1-dash11"> Available: </span>{{ available }}</span
+                  >
                 </v-card-text>
                 <v-card-text>
-                  <span class="h1-dash2" sm="3">Unavailable: {{ unavailable }}</span>
+                  <span class="h1-dash2" sm="3"
+                    ><span class="h1-dash11"> Unavailable: </span>{{ unavailable }}</span
+                  >
                 </v-card-text>
               </div>
             </v-card>
@@ -341,6 +345,10 @@ export default {
 </script>
 
 <style>
+.h1-dash11 {
+  color: #fff;
+  font-size: 16px;
+}
 body {
   font-size: 14px;
   color: #1c1b2b;
